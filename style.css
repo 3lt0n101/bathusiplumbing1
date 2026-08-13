@@ -860,8 +860,8 @@ main {
 .whatsapp-float {
   position: fixed;
   right: 1rem;
-  /* FIX: safe-area-inset prevents overlap with mobile device notches/home indicators */
-  bottom: calc(1rem + env(safe-area-inset-bottom));
+  /* FIX: moved up to prevent overlap with back-to-top button */
+  bottom: calc(5.2rem + env(safe-area-inset-bottom));
   width: 3.5rem;
   height: 3.5rem;
   display: inline-flex;
