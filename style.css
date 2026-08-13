@@ -1,17 +1,31 @@
+/* ============================================================================
+   ROOT VARIABLES & TYPOGRAPHY
+   =========================================================================== */
+/* WHY: CSS variables enable consistent theming, easier maintenance, and reduce file size */
 :root {
   color-scheme: light;
-  --bg: #f4f7fb;
-  --surface: #ffffff;
-  --surface-2: #eef6ff;
-  --primary: #0d3f67;
-  --primary-strong: #072b49;
-  --accent: #4da96f;
-  --accent-strong: #2f7b4d;
-  --accent-soft: #f0ab4b;
-  --text: #11263b;
-  --muted: #5f7188;
-  --border: rgba(16, 34, 54, 0.1);
-  --shadow: 0 24px 60px rgba(6, 28, 46, 0.12);
+  
+  /* WHY: Professional color scheme aligned with South African brands and accessibility */
+  --primary: #0F3B4A;           /* Deep teal - primary CTA and headers */
+  --primary-strong: #072B40;    /* Darker teal - text on light backgrounds */
+  --accent: #E9A51B;            /* Warm gold - attention, emergency CTAs */
+  --accent-soft: #F5DDB5;       /* Light gold - backgrounds and subtle highlights */
+  
+  /* WHY: Structured surface hierarchy prevents jarring transitions */
+  --bg: #F7F7F7;                /* Page background - neutral gray */
+  --surface: #FFFFFF;           /* Card backgrounds - true white for contrast */
+  --surface-2: #F0F5F8;         /* Subtle backgrounds - slight blue tint */
+  
+  /* WHY: Text hierarchy prevents eye strain and improves scannability */
+  --text: #222222;              /* Main text - dark enough for WCAG AA compliance */
+  --muted: #666666;             /* Secondary text - for descriptions and metadata */
+  --border: rgba(0, 0, 0, 0.08);/* Subtle dividers - not jarring */
+  
+  /* WHY: Shadow depth guides visual hierarchy and focus */
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+  --max: 1150px;                /* Content max-width for readability */
+  --radius: 12px;               /* Consistent border radius across UI */
+  
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -683,6 +697,30 @@ main {
   margin: 0 0 0.2rem;
 }
 
+/* WHY: Contact info in footer is critical for trust, local SEO, and conversion */
+.footer-contact {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.95rem;
+}
+
+.footer-contact p {
+  margin: 0.4rem 0;
+  color: var(--muted);
+}
+
+.footer-contact a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.footer-contact a:hover {
+  color: var(--accent);
+}
+
 .footer-links {
   display: grid;
   gap: 0.65rem;
@@ -692,10 +730,27 @@ main {
 .footer-links a {
   color: var(--muted);
   font-weight: 600;
+  transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
   color: var(--primary);
+}
+
+/* WHY: Legal and copyright info reassures users about site maintenance */
+.footer-legal {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.footer-legal p {
+  margin: 0;
+  color: var(--muted);
 }
 
 .back-to-top {
@@ -715,6 +770,35 @@ main {
   pointer-events: none;
   transform: translateY(10px);
   transition: all 0.2s ease;
+  z-index: 998;
+}
+
+/* WHY: Dedicated call button for emergency plumbing business - always visible on mobile */
+.call-float {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 6.8rem;
+  width: 3.2rem;
+  height: 3.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 1.3rem;
+  box-shadow: 0 16px 38px rgba(233, 165, 27, 0.3);
+  z-index: 999;
+  border: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.call-float:hover,
+.call-float:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 45px rgba(233, 165, 27, 0.4);
 }
 
 .whatsapp-float {
@@ -732,11 +816,13 @@ main {
   text-decoration: none;
   font-size: 1.3rem;
   box-shadow: 0 16px 38px rgba(37, 211, 102, 0.25);
-  z-index: 120;
+  z-index: 998;
 }
 
-.whatsapp-float:hover {
+.whatsapp-float:hover,
+.whatsapp-float:focus {
   transform: translateY(-2px);
+  box-shadow: 0 20px 45px rgba(37, 211, 102, 0.35);
 }
 
 .back-to-top.visible {
@@ -769,7 +855,9 @@ main {
   }
 }
 
+/* WHY: Mobile-first breakpoint - 760px targets most phones and tablets in landscape */
 @media (max-width: 760px) {
+  /* WHY: Hamburger menu appears at this breakpoint to save space */
   .nav-wrap {
     flex-wrap: wrap;
   }
@@ -807,9 +895,19 @@ main {
     grid-template-columns: 1fr;
   }
 
+  /* WHY: CTA banner stacks vertically on mobile for better readability */
   .cta-banner,
   .footer {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  /* WHY: Floating buttons stack vertically on mobile for accessibility */
+  .call-float {
+    bottom: 5.5rem;
+  }
+
+  .whatsapp-float {
+    bottom: 3.8rem;
   }
 }

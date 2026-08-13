@@ -1,26 +1,45 @@
+/* ============================================================================
+   BATHUSI PLUMBING - VANILLA JS ENHANCEMENTS
+   WHY: No dependencies, maximum performance, full control, client-side only
+   =========================================================================== */
+
 document.addEventListener("DOMContentLoaded", () => {
+  /* WHY: Wait for DOM to ensure all elements are available */
+  
+  /* ========== INITIALIZATION ========== */
   const header = document.querySelector(".site-header");
   const menuToggle = document.querySelector(".menu-toggle");
   const nav = document.querySelector(".nav-links");
   const navLinks = document.querySelectorAll(".nav-links a");
   const backToTop = document.querySelector(".back-to-top");
   const revealItems = document.querySelectorAll(".reveal");
-  const counters = document.querySelectorAll(".stat-number");
+  const yearSpans = document.querySelectorAll(".year");
   const hoverImages = document.querySelectorAll(".hero-image img, .about-image img, .project-card img");
 
+  /* ========== CURRENT YEAR IN FOOTER ========== */
+  /* WHY: Dynamic year shows site is maintained and helps with SEO credibility */
+  const currentYear = new Date().getFullYear();
+  yearSpans.forEach((span) => {
+    span.textContent = currentYear;
+  });
+
+  /* ========== NAVIGATION STATE TRACKING ========== */
   const setActiveLink = (id) => {
+    /* WHY: Highlight nav link matching current section for UX clarity */
     navLinks.forEach((link) => {
       const isActive = link.getAttribute("href") === `#${id}`;
       link.classList.toggle("active", isActive);
     });
   };
 
+  /* ========== REVEAL ANIMATIONS ========== */
+  /* WHY: Intersection Observer for efficient scroll-triggered animations (no scroll listener) */
   const revealObserver = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
+          observer.unobserve(entry.target); /* WHY: Stop observing once visible to save memory */
         }
       });
     },
@@ -29,40 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   revealItems.forEach((item) => revealObserver.observe(item));
 
-  const counterObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
-
-  const animateCounter = (element) => {
-    const target = Number(element.dataset.target || 0);
-    const duration = 1300;
-    const startTime = performance.now();
-
-    const step = (timestamp) => {
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      const currentValue = Math.floor(progress * target);
-      element.textContent = currentValue.toString();
-
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      } else {
-        element.textContent = target.toString();
-      }
-    };
-
-    requestAnimationFrame(step);
-  };
-
-  counters.forEach((counter) => counterObserver.observe(counter));
-
+  /* ========== SECTION INTERSECTION FOR ACTIVE NAV ========== */
+  /* WHY: Update nav highlight as user scrolls past sections */
   const sectionObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -78,6 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
     sectionObserver.observe(section);
   });
 
+  /* ========== SMOOTH SCROLL FOR ANCHOR LINKS ========== */
+  /* WHY: Better UX than instant jumps; prevents closing mobile nav issues */
   navLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
       const href = link.getAttribute("href");
@@ -89,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
         target.scrollIntoView({ behavior: "smooth", block: "start" });
       }
 
+      /* WHY: Close mobile menu after navigation for better UX */
       if (window.innerWidth <= 760) {
         nav.classList.remove("nav-open");
         menuToggle.setAttribute("aria-expanded", "false");
@@ -96,25 +86,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  /* ========== MOBILE MENU TOGGLE ========== */
+  /* WHY: Hamburger menu for mobile, handled with accessibility attributes */
   menuToggle.addEventListener("click", () => {
     const isOpen = nav.classList.toggle("nav-open");
     menuToggle.setAttribute("aria-expanded", String(isOpen));
   });
 
+  /* ========== SCROLL EFFECTS ========== */
+  /* WHY: Show "back to top" and header shadow on scroll for usability */
   window.addEventListener("scroll", () => {
     header.classList.toggle("scrolled", window.scrollY > 20);
     backToTop.classList.toggle("visible", window.scrollY > 600);
   });
 
+  /* ========== BACK TO TOP BUTTON ========== */
   backToTop.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
+  /* ========== IMAGE HOVER EFFECTS ========== */
+  /* WHY: Scale images on hover for interactive feedback */
   hoverImages.forEach((image) => {
     image.addEventListener("mouseenter", () => image.classList.add("hovered"));
     image.addEventListener("mouseleave", () => image.classList.remove("hovered"));
   });
 
+  /* ========== RESPONSIVE MENU RESET ========== */
+  /* WHY: Close mobile menu when window resizes to desktop width */
   window.addEventListener("resize", () => {
     if (window.innerWidth > 760) {
       nav.classList.remove("nav-open");

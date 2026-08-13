@@ -1,14 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-ZA">
   <head>
+    <!-- WHY: South Africa locale for accessibility and SEO -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Bathusi Plumbing & Maintenance provides professional plumbing, electrical, carpentry and property maintenance services in Hoedspruit, Phalaborwa and surrounding areas." />
     <title>Bathusi Plumbing & Maintenance | Plumbing, Electrical, Carpentry & Property Maintenance</title>
+    
+    <!-- WHY: Favicon for brand recognition in browser tabs and bookmarks -->
+    <link rel="icon" type="image/png" href="images/logo.png" />
+    
+    <!-- WHY: Open Graph for social media sharing and rich previews -->
+    <meta property="og:title" content="Bathusi Plumbing & Maintenance" />
+    <meta property="og:description" content="One call. Multiple trades. One trusted team. Professional plumbing, electrical, carpentry and property maintenance for Hoedspruit and Phalaborwa." />
+    <meta property="og:type" content="business.business" />
+    <meta property="og:url" content="https://poetic-tulumba-f64a30.netlify.app/" />
+    <meta property="og:image" content="images/logo.png" />
+    
+    <!-- WHY: Google Font optimization with preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
+    
+    <!-- WHY: LocalBusiness structured data for local SEO and rich snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Bathusi Plumbing & Maintenance",
+      "image": "images/logo.png",
+      "description": "Professional plumbing, electrical, carpentry and property maintenance services",
+      "telephone": "+27783942634",
+      "email": "eltonmuthenga@gmail.com",
+      "areaServed": {
+        "@type": "City",
+        "name": "Hoedspruit"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "ZA",
+        "addressRegion": "Limpopo",
+        "addressLocality": "Hoedspruit"
+      },
+      "priceRange": "ZAR",
+      "service": [
+        {"@type": "Service", "name": "Plumbing"},
+        {"@type": "Service", "name": "Electrical"},
+        {"@type": "Service", "name": "Carpentry"},
+        {"@type": "Service", "name": "Property Maintenance"}
+      ]
+    }
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -20,7 +63,8 @@
     <header class="site-header">
       <div class="nav-wrap">
         <a class="brand" href="#home" aria-label="Bathusi Plumbing and Maintenance home">
-          <img src="images/logo.png" alt="Bathusi Plumbing and Maintenance logo" />
+          <!-- WHY: Explicit dimensions prevent layout shift; logo is critical, so loading="eager" by default -->
+          <img src="images/logo.png" alt="Bathusi Plumbing and Maintenance logo" width="48" height="48" />
           <span class="brand-copy">
             <strong>Bathusi</strong>
             <small>Plumbing &amp; Maintenance</small>
@@ -67,7 +111,8 @@
           </div>
 
           <div class="hero-image reveal" aria-label="Property maintenance service in progress">
-            <img src="images/hero.jpg" alt="Licensed technician attending to a property maintenance service" />
+            <!-- WHY: Lazy loading + explicit dimensions prevent CLS; descriptive alt for SEO -->
+            <img src="images/hero.jpg" alt="Licensed technician attending to a property maintenance service" width="600" height="450" loading="lazy" />
             <div class="hero-overlay">
               <p class="overlay-label">MULTI-TRADE PROPERTY SERVICES</p>
               <h3>Prepared for repairs, installations and maintenance.</h3>
@@ -80,7 +125,8 @@
       <section class="brand-strip reveal" aria-labelledby="brand-title">
         <div class="brand-panel">
           <div class="brand-badge">
-            <img src="images/logo.png" alt="Bathusi Plumbing and Maintenance company badge" />
+            <!-- WHY: Lazy loading for below-fold image; brand badge for trust signals -->
+            <img src="images/logo.png" alt="Bathusi Plumbing and Maintenance company badge" width="160" height="160" loading="lazy" />
           </div>
           <div class="brand-content">
             <span class="eyebrow">WHY BATHUSI</span>
@@ -170,27 +216,28 @@
         </div>
         <div class="projects-grid">
           <article class="project-card">
-            <img src="images/gallery1.jpg" alt="Property plumbing and bathroom service" />
+            <!-- WHY: Lazy loading for off-screen images; consistent dimensions for stable layout -->
+            <img src="images/gallery1.jpg" alt="Professional plumbing installation and bathroom service" width="400" height="220" loading="lazy" />
             <div class="project-content">
               <h3>PLUMBING &amp; BATHROOM WORK</h3>
               <p>Plumbing installations, fixture replacements, repairs and bathroom maintenance.</p>
-              <a class="text-link" href="#contact">View Our Work</a>
+              <a class="text-link" href="#contact">Request a Quote</a>
             </div>
           </article>
           <article class="project-card">
-            <img src="images/gallery2.jpg" alt="Water and drainage property service" />
+            <img src="images/gallery2.jpg" alt="Water supply line and drainage system property service" width="400" height="220" loading="lazy" />
             <div class="project-content">
               <h3>WATER &amp; DRAINAGE SYSTEMS</h3>
               <p>Water supply, pipework, drainage repairs and property water infrastructure.</p>
-              <a class="text-link" href="#contact">View Our Work</a>
+              <a class="text-link" href="#contact">Request a Quote</a>
             </div>
           </article>
           <article class="project-card">
-            <img src="images/gallery3.jpg" alt="Electrical and property maintenance service" />
+            <img src="images/gallery3.jpg" alt="Professional electrical repair and coordinated property maintenance service" width="400" height="220" loading="lazy" />
             <div class="project-content">
               <h3>ELECTRICAL &amp; PROPERTY MAINTENANCE</h3>
               <p>Electrical repairs and coordinated multi-trade maintenance for residential and commercial properties.</p>
-              <a class="text-link" href="#contact">View Our Work</a>
+              <a class="text-link" href="#contact">Request a Quote</a>
             </div>
           </article>
         </div>
@@ -210,7 +257,8 @@
               <li>Practical solutions focused on reliable long-term repairs</li>
             </ul>
             <div class="owner-card">
-              <img src="images/owner.jpg" alt="Bathusi owner inspecting a service call" />
+              <!-- WHY: Image width/height for CLS prevention; owner photo builds trust -->
+              <img src="images/owner.jpg" alt="Bathusi owner inspecting a service call" width="68" height="68" loading="lazy" />
               <div>
                 <h3>Owner-led service</h3>
                 <p>Bathusi is built around hands-on accountability. Work is approached with practical planning, clear communication and attention to the condition and protection of the client's property.</p>
@@ -218,7 +266,8 @@
             </div>
           </div>
           <div class="about-image">
-            <img src="images/about.jpg" alt="Bathusi technician inspecting a property maintenance task" />
+            <!-- WHY: Lazy loading for below-fold; width/height for layout stability -->
+            <img src="images/about.jpg" alt="Bathusi technician inspecting a property maintenance task" width="500" height="360" loading="lazy" />
           </div>
         </div>
       </section>
@@ -233,7 +282,7 @@
       </section>
     </main>
 
-    <!-- PRODUCTION FIX: Contact Form -->
+    <!-- PRODUCTION FIX: Netlify Forms for serverless submissions -->
     <section id="contact" class="contact-section reveal">
       <div class="contact-wrap">
         <div class="contact-copy">
@@ -241,7 +290,11 @@
           <h2>Request a Quote</h2>
           <p>Tell us what needs attention and Bathusi will contact you to discuss the work and arrange the next step.</p>
         </div>
-        <form action="mailto:eltonmuthenga@gmail.com" method="post" enctype="text/plain" class="quote-form">
+        <!-- WHY: Netlify Forms handles spam filtering, email routing, and integrations automatically -->
+        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="quote-form">
+          <input type="hidden" name="form-name" value="contact" />
+          <!-- WHY: Honeypot field catches basic bots; hidden from users -->
+          <input type="text" name="bot-field" style="display:none;" />
           <input type="text" name="name" placeholder="Your name" required />
           <input type="tel" name="phone" placeholder="Phone number" required />
           <textarea name="details" rows="5" placeholder="Describe the plumbing, electrical, carpentry or maintenance work you need." required></textarea>
@@ -252,9 +305,16 @@
 
     <footer class="footer reveal">
       <div class="footer-brand">
-        <img src="images/logo.png" alt="Bathusi Plumbing and Maintenance logo" />
+        <!-- WHY: Footer images show in search results and social shares -->
+        <img src="images/logo.png" alt="Bathusi Plumbing and Maintenance logo" width="48" height="48" loading="lazy" />
         <h3>Bathusi Plumbing &amp; Maintenance</h3>
         <p>Professional plumbing, electrical, carpentry and property maintenance services for homes, businesses and managed properties in Hoedspruit, Phalaborwa and surrounding areas.</p>
+        <!-- WHY: Footer contact info is critical for trust and local SEO -->
+        <div class="footer-contact">
+          <p><strong>Phone:</strong> <a href="tel:+27783942634">+27 (78) 394 2634</a></p>
+          <p><strong>Email:</strong> <a href="mailto:eltonmuthenga@gmail.com">eltonmuthenga@gmail.com</a></p>
+          <p><strong>Service Areas:</strong> Hoedspruit, Phalaborwa, Hazyview</p>
+        </div>
       </div>
       <div class="footer-links">
         <a href="tel:+27783942634">Call Bathusi</a>
@@ -262,10 +322,17 @@
         <a href="#contact">Request a Quote</a>
         <a href="#home">Back to top</a>
       </div>
+      <!-- WHY: Dynamic year in footer is current best practice and shows site is maintained -->
+      <div class="footer-legal">
+        <p>&copy; <span class="year">2024</span> Bathusi Plumbing &amp; Maintenance. All rights reserved.</p>
+      </div>
     </footer>
 
-    <button class="back-to-top" aria-label="Back to top">↑</button>
+    <!-- WHY: Sticky CTA buttons for mobile emergency services -->
+    <a class="call-float" href="tel:+27783942634" aria-label="Call Bathusi plumbing emergency">☎️</a>
     <a class="whatsapp-float" href="https://wa.me/27783942634?text=Hi%20Bathusi,%20I%20would%20like%20to%20request%20a%20quote." target="_blank" rel="noopener noreferrer" aria-label="Chat with Bathusi on WhatsApp">💬</a>
-    <script src="script.js"></script>
+    <button class="back-to-top" aria-label="Back to top">↑</button>
+    
+    <script src="script.js" defer></script>
   </body>
 </html>
