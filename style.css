@@ -902,12 +902,15 @@ main {
     align-items: flex-start;
   }
 
-  /* WHY: Floating buttons stack vertically on mobile for accessibility */
+  /* WHY: Floating buttons positioned on opposite sides on mobile for accessibility and no overlap */
   .call-float {
+    right: 1.2rem;
     bottom: 5.5rem;
   }
 
   .whatsapp-float {
-    bottom: 3.8rem;
+    right: auto;
+    left: 1.2rem;
+    bottom: 5.5rem;
   }
 }
