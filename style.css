@@ -44,6 +44,8 @@ body {
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
+  /* FIX: prevents overlap on mobile - reserves space for fixed header */
+  padding-top: 4rem;
 }
 
 a {
@@ -88,9 +90,13 @@ section[id] {
 }
 
 .site-header {
-  position: sticky;
+  /* FIX: proper fixed layer system - top of z-index hierarchy */
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  right: 0;
+  height: 4rem;
+  z-index: 1000;
   backdrop-filter: blur(18px);
   background: rgba(248, 251, 255, 0.8);
   border-bottom: 1px solid transparent;
@@ -106,6 +112,7 @@ section[id] {
 .nav-wrap {
   max-width: 1200px;
   margin: 0 auto;
+  height: 100%;
   padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
@@ -755,8 +762,9 @@ main {
 
 .back-to-top {
   position: fixed;
-  right: 1.2rem;
-  bottom: 1.2rem;
+  right: 1rem;
+  /* FIX: safe-area-inset prevents overlap with notches on mobile */
+  bottom: calc(1rem + env(safe-area-inset-bottom));
   width: 3rem;
   height: 3rem;
   border: 0;
@@ -770,15 +778,17 @@ main {
   pointer-events: none;
   transform: translateY(10px);
   transition: all 0.2s ease;
-  z-index: 998;
+  /* FIX: z-index below WhatsApp (999) to prevent overlap */
+  z-index: 997;
 }
 
 .whatsapp-float {
   position: fixed;
-  right: 1.2rem;
-  bottom: 5.2rem;
-  width: 3.2rem;
-  height: 3.2rem;
+  right: 1rem;
+  /* FIX: safe-area-inset prevents overlap with mobile device notches/home indicators */
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  width: 3.5rem;
+  height: 3.5rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -788,7 +798,11 @@ main {
   text-decoration: none;
   font-size: 1.3rem;
   box-shadow: 0 16px 38px rgba(37, 211, 102, 0.25);
-  z-index: 998;
+  /* FIX: z-index below header (1000) but above back-to-top (997) */
+  z-index: 999;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .whatsapp-float:hover,
@@ -827,11 +841,21 @@ main {
   }
 }
 
-/* WHY: Mobile-first breakpoint - 760px targets most phones and tablets in landscape */
-@media (max-width: 760px) {
+/* WHY: Mobile-first breakpoint - 768px targets most phones and tablets in landscape */
+@media (max-width: 768px) {
+  /* FIX: reduced header height on mobile */
+  body {
+    padding-top: 3.5rem;
+  }
+
+  .site-header {
+    height: 3.5rem;
+  }
+
   /* WHY: Hamburger menu appears at this breakpoint to save space */
   .nav-wrap {
     flex-wrap: wrap;
+    padding: 0.75rem 0.75rem;
   }
 
   .menu-toggle {
@@ -852,8 +876,10 @@ main {
     display: flex;
   }
 
+  /* FIX: shorter button text on mobile */
   .nav-cta {
-    display: none;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
   }
 
   .brand-panel {
@@ -874,10 +900,26 @@ main {
     align-items: flex-start;
   }
 
-  /* WHY: WhatsApp button positioned on bottom left for mobile accessibility */
+  /* FIX: main reserves space for WhatsApp float on mobile */
+  main {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+  }
+
+  /* FIX: WhatsApp button optimized for mobile - 52px circle */
   .whatsapp-float {
-    right: auto;
-    left: 1.2rem;
-    bottom: 1.2rem;
+    right: 0.75rem;
+    bottom: calc(0.75rem + env(safe-area-inset-bottom));
+    width: 3.25rem;
+    height: 3.25rem;
+    font-size: 1.2rem;
+  }
+
+  /* FIX: back-to-top also respects safe-area on mobile */
+  .back-to-top {
+    right: 0.75rem;
+    bottom: calc(4.5rem + env(safe-area-inset-bottom));
+    width: 2.75rem;
+    height: 2.75rem;
+    font-size: 1.15rem;
   }
 }
