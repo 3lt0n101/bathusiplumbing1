@@ -573,6 +573,81 @@ main {
   line-height: 1.7;
 }
 
+/* WHY: Reviews section builds trust and social proof for local business */
+.reviews-section {
+  padding-top: 2.6rem;
+}
+
+.reviews-section .section-header h2 {
+  font-size: 2rem;
+}
+
+.rating-stars {
+  color: var(--accent);
+  font-size: 1.4em;
+}
+
+.review-count {
+  font-size: 0.9em;
+  color: var(--muted);
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.review-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 1.4rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 55px rgba(9, 31, 58, 0.14);
+}
+
+.review-rating {
+  display: inline-block;
+}
+
+.review-rating span {
+  color: var(--accent);
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+}
+
+.review-text {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+.review-author {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  display: block;
+}
+
+.review-cta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.8rem;
+  justify-content: center;
+}
+
 .projects-section {
   padding-top: 2.6rem;
 }
@@ -836,7 +911,8 @@ main {
 
   .stats-grid,
   .service-grid,
-  .projects-grid {
+  .projects-grid,
+  .review-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -889,7 +965,8 @@ main {
 
   .stats-grid,
   .service-grid,
-  .projects-grid {
+  .projects-grid,
+  .review-grid {
     grid-template-columns: 1fr;
   }
 
@@ -921,5 +998,16 @@ main {
     width: 2.75rem;
     height: 2.75rem;
     font-size: 1.15rem;
+  }
+
+  /* WHY: Review CTA buttons stack on mobile */
+  .review-cta {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .review-cta .btn,
+  .review-cta .btn-secondary {
+    width: 100%;
   }
 }
