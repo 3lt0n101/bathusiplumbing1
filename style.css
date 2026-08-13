@@ -773,34 +773,6 @@ main {
   z-index: 998;
 }
 
-/* WHY: Dedicated call button for emergency plumbing business - always visible on mobile */
-.call-float {
-  position: fixed;
-  right: 1.2rem;
-  bottom: 8.6rem;
-  width: 3.2rem;
-  height: 3.2rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--accent);
-  color: #fff;
-  border-radius: 50%;
-  text-decoration: none;
-  font-size: 1.3rem;
-  box-shadow: 0 16px 38px rgba(233, 165, 27, 0.3);
-  z-index: 999;
-  border: 0;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.call-float:hover,
-.call-float:focus {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 45px rgba(233, 165, 27, 0.4);
-}
-
 .whatsapp-float {
   position: fixed;
   right: 1.2rem;
@@ -902,15 +874,10 @@ main {
     align-items: flex-start;
   }
 
-  /* WHY: Floating buttons positioned on opposite sides on mobile for accessibility and no overlap */
-  .call-float {
-    right: 1.2rem;
-    bottom: 5.5rem;
-  }
-
+  /* WHY: WhatsApp button positioned on bottom left for mobile accessibility */
   .whatsapp-float {
     right: auto;
     left: 1.2rem;
-    bottom: 5.5rem;
+    bottom: 1.2rem;
   }
 }
