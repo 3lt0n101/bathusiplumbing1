@@ -1,31 +1,17 @@
-/* ============================================================================
-   ROOT VARIABLES & TYPOGRAPHY
-   =========================================================================== */
-/* WHY: CSS variables enable consistent theming, easier maintenance, and reduce file size */
 :root {
   color-scheme: light;
-  
-  /* WHY: Professional color scheme aligned with South African brands and accessibility */
-  --primary: #0F3B4A;           /* Deep teal - primary CTA and headers */
-  --primary-strong: #072B40;    /* Darker teal - text on light backgrounds */
-  --accent: #E9A51B;            /* Warm gold - attention, emergency CTAs */
-  --accent-soft: #F5DDB5;       /* Light gold - backgrounds and subtle highlights */
-  
-  /* WHY: Structured surface hierarchy prevents jarring transitions */
-  --bg: #F7F7F7;                /* Page background - neutral gray */
-  --surface: #FFFFFF;           /* Card backgrounds - true white for contrast */
-  --surface-2: #F0F5F8;         /* Subtle backgrounds - slight blue tint */
-  
-  /* WHY: Text hierarchy prevents eye strain and improves scannability */
-  --text: #222222;              /* Main text - dark enough for WCAG AA compliance */
-  --muted: #666666;             /* Secondary text - for descriptions and metadata */
-  --border: rgba(0, 0, 0, 0.08);/* Subtle dividers - not jarring */
-  
-  /* WHY: Shadow depth guides visual hierarchy and focus */
-  --shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
-  --max: 1150px;                /* Content max-width for readability */
-  --radius: 12px;               /* Consistent border radius across UI */
-  
+  --bg: #f4f7fb;
+  --surface: #ffffff;
+  --surface-2: #eef6ff;
+  --primary: #0d3f67;
+  --primary-strong: #072b49;
+  --accent: #4da96f;
+  --accent-strong: #2f7b4d;
+  --accent-soft: #f0ab4b;
+  --text: #11263b;
+  --muted: #5f7188;
+  --border: rgba(16, 34, 54, 0.1);
+  --shadow: 0 24px 60px rgba(6, 28, 46, 0.12);
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -44,8 +30,6 @@ body {
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
-  /* FIX: prevents overlap on mobile - reserves space for fixed header */
-  padding-top: 4rem;
 }
 
 a {
@@ -90,13 +74,9 @@ section[id] {
 }
 
 .site-header {
-  /* FIX: proper fixed layer system - top of z-index hierarchy */
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
-  height: 4rem;
-  z-index: 1000;
+  z-index: 100;
   backdrop-filter: blur(18px);
   background: rgba(248, 251, 255, 0.8);
   border-bottom: 1px solid transparent;
@@ -112,7 +92,6 @@ section[id] {
 .nav-wrap {
   max-width: 1200px;
   margin: 0 auto;
-  height: 100%;
   padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
@@ -506,10 +485,9 @@ main {
 
 .stat-card strong {
   display: inline-block;
-  font-size: clamp(1.6rem, 2vw, 2.2rem);
+  font-size: 2.2rem;
   color: var(--primary-strong);
   line-height: 1;
-  max-width: 100%;
 }
 
 .stat-suffix {
@@ -571,81 +549,6 @@ main {
   margin: 0;
   color: var(--muted);
   line-height: 1.7;
-}
-
-/* WHY: Reviews section builds trust and social proof for local business */
-.reviews-section {
-  padding-top: 2.6rem;
-}
-
-.reviews-section .section-header h2 {
-  font-size: 2rem;
-}
-
-.rating-stars {
-  color: var(--accent);
-  font-size: 1.4em;
-}
-
-.review-count {
-  font-size: 0.9em;
-  color: var(--muted);
-}
-
-.review-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-  margin: 1.5rem 0;
-}
-
-.review-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 1.4rem;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.review-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 24px 55px rgba(9, 31, 58, 0.14);
-}
-
-.review-rating {
-  display: inline-block;
-}
-
-.review-rating span {
-  color: var(--accent);
-  font-size: 1.2rem;
-  letter-spacing: 0.08em;
-}
-
-.review-text {
-  margin: 0;
-  color: var(--text);
-  line-height: 1.7;
-  font-size: 0.95rem;
-  font-style: italic;
-}
-
-.review-author {
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
-  color: var(--muted);
-  display: block;
-}
-
-.review-cta {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1.8rem;
-  justify-content: center;
 }
 
 .projects-section {
@@ -779,30 +682,6 @@ main {
   margin: 0 0 0.2rem;
 }
 
-/* WHY: Contact info in footer is critical for trust, local SEO, and conversion */
-.footer-contact {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border);
-  font-size: 0.95rem;
-}
-
-.footer-contact p {
-  margin: 0.4rem 0;
-  color: var(--muted);
-}
-
-.footer-contact a {
-  color: var(--primary);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s ease;
-}
-
-.footer-contact a:hover {
-  color: var(--accent);
-}
-
 .footer-links {
   display: grid;
   gap: 0.65rem;
@@ -812,34 +691,16 @@ main {
 .footer-links a {
   color: var(--muted);
   font-weight: 600;
-  transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
   color: var(--primary);
 }
 
-/* WHY: Legal and copyright info reassures users about site maintenance */
-.footer-legal {
-  grid-column: 1 / -1;
-  border-top: 1px solid var(--border);
-  padding-top: 1.5rem;
-  margin-top: 1.5rem;
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-.footer-legal p {
-  margin: 0;
-  color: var(--muted);
-}
-
 .back-to-top {
   position: fixed;
-  right: 1rem;
-  /* FIX: safe-area-inset prevents overlap with notches on mobile */
-  bottom: calc(1rem + env(safe-area-inset-bottom));
+  right: 1.2rem;
+  bottom: 1.2rem;
   width: 3rem;
   height: 3rem;
   border: 0;
@@ -853,37 +714,6 @@ main {
   pointer-events: none;
   transform: translateY(10px);
   transition: all 0.2s ease;
-  /* FIX: z-index below WhatsApp (999) to prevent overlap */
-  z-index: 997;
-}
-
-.whatsapp-float {
-  position: fixed;
-  right: 1rem;
-  /* FIX: moved up to prevent overlap with back-to-top button */
-  bottom: calc(5.2rem + env(safe-area-inset-bottom));
-  width: 3.5rem;
-  height: 3.5rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #25d366;
-  color: #fff;
-  border-radius: 50%;
-  text-decoration: none;
-  font-size: 1.3rem;
-  box-shadow: 0 16px 38px rgba(37, 211, 102, 0.25);
-  /* FIX: z-index below header (1000) but above back-to-top (997) */
-  z-index: 999;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.whatsapp-float:hover,
-.whatsapp-float:focus {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 45px rgba(37, 211, 102, 0.35);
 }
 
 .back-to-top.visible {
@@ -911,27 +741,14 @@ main {
 
   .stats-grid,
   .service-grid,
-  .projects-grid,
-  .review-grid {
+  .projects-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-/* WHY: Mobile-first breakpoint - 768px targets most phones and tablets in landscape */
-@media (max-width: 768px) {
-  /* FIX: reduced header height on mobile */
-  body {
-    padding-top: 3.5rem;
-  }
-
-  .site-header {
-    height: 3.5rem;
-  }
-
-  /* WHY: Hamburger menu appears at this breakpoint to save space */
+@media (max-width: 760px) {
   .nav-wrap {
     flex-wrap: wrap;
-    padding: 0.75rem 0.75rem;
   }
 
   .menu-toggle {
@@ -952,10 +769,8 @@ main {
     display: flex;
   }
 
-  /* FIX: shorter button text on mobile */
   .nav-cta {
-    padding: 0.75rem 1rem;
-    font-size: 0.9rem;
+    display: none;
   }
 
   .brand-panel {
@@ -965,49 +780,13 @@ main {
 
   .stats-grid,
   .service-grid,
-  .projects-grid,
-  .review-grid {
+  .projects-grid {
     grid-template-columns: 1fr;
   }
 
-  /* WHY: CTA banner stacks vertically on mobile for better readability */
   .cta-banner,
   .footer {
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  /* FIX: main reserves space for WhatsApp float on mobile */
-  main {
-    padding-bottom: calc(5rem + env(safe-area-inset-bottom));
-  }
-
-  /* FIX: WhatsApp button optimized for mobile - 52px circle */
-  .whatsapp-float {
-    right: 0.75rem;
-    bottom: calc(0.75rem + env(safe-area-inset-bottom));
-    width: 3.25rem;
-    height: 3.25rem;
-    font-size: 1.2rem;
-  }
-
-  /* FIX: back-to-top also respects safe-area on mobile */
-  .back-to-top {
-    right: 0.75rem;
-    bottom: calc(4.5rem + env(safe-area-inset-bottom));
-    width: 2.75rem;
-    height: 2.75rem;
-    font-size: 1.15rem;
-  }
-
-  /* WHY: Review CTA buttons stack on mobile */
-  .review-cta {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .review-cta .btn,
-  .review-cta .btn-secondary {
-    width: 100%;
   }
 }
